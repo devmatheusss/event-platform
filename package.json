@@ -1,0 +1,33 @@
+{
+  "name": "event-platform",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.0",
+    "@phosphor-icons/react": "^2.0.10",
+    "@vime/core": "^5.4.1",
+    "@vime/react": "^5.4.1",
+    "date-fns": "^2.30.0",
+    "graphql": "^16.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.9",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
