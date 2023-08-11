@@ -5,6 +5,9 @@ import { CircleNotch } from "@phosphor-icons/react";
 import { Logo } from "@/assets/Logo";
 import { Footer } from "@/components/Footer";
 import { useCreateSubscriberMutation } from "@/graphql/generated";
+
+import CodeMockup from '@/assets/code-mockup.png'
+
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
@@ -84,7 +87,7 @@ export function Subscribe() {
         </div>
       </section>
 
-      <img src="/src/assets/code-mockup.png" alt="Code Mockup" />
+      <img src={CodeMockup} alt="Code Mockup" />
 
       <Footer />
     </div>
