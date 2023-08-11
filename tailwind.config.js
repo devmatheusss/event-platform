@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        blur: 'url(/src/assets/blur-bg.png)'
+      },
       colors: {
         green: {
           300: '#00B37E',
