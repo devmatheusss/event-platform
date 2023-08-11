@@ -1,46 +1,11 @@
-import { RocketseatLogo } from "@/assets/RocketseatLogo";
-import { gql, useQuery } from "@apollo/client";
 import { CaretRight, DiscordLogo, FileArrowDown, ImageSquare, Lightning, SpinnerGap } from "@phosphor-icons/react";
 import { DefaultUi, Player, Youtube } from "@vime/react";
 import '@vime/core/themes/default.css'
-
-const GET_LESSON_BY_SLUG_QUERY = gql`
-  query GetLessonBySlug($slug: String) {
-    lesson(where: {slug: $slug}) {
-      description
-      title
-      videoId
-      challenge {
-        url
-      }
-      teacher {
-        avatarURL
-        bio
-        name
-      }
-    }
-  }
-`
-
-interface GetLessonBySlugQueryResponse {
-  lesson: {
-    id: string
-    title: string
-    description: string
-    videoId: string
-    teacher: {
-      avatarURL: string
-      bio: string
-      name: string
-    }
-    challenge: {
-      url: string
-    }
-  }
-}
+import { Footer } from "./Footer";
+import { useGetLessonBySlugQuery } from "@/graphql/generated";
 
 export function Video({ lessonSlug }: { lessonSlug: string }) {
-  const { data, loading } = useQuery<GetLessonBySlugQueryResponse>(GET_LESSON_BY_SLUG_QUERY, {
+  const { data, loading } = useGetLessonBySlugQuery({
     variables: {
       slug: lessonSlug
     }
@@ -133,11 +98,7 @@ export function Video({ lessonSlug }: { lessonSlug: string }) {
         </section>
       </div>
 
-      <footer className="mt-20 text-gray-300 py-6 mx-6 flex items-center gap-6 border-t border-gray-600">
-        <RocketseatLogo />
-        <span className="flex-1">Rocketseat - Todos os direitos reservados</span>
-        <a href="#" className="hover:text-gray-100 hover:underline">Políticas de privacidade</a>
-      </footer>
+      <Footer />
     </div>
   )
 }

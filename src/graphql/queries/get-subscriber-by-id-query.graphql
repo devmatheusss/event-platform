@@ -1,0 +1,5 @@
+query GetSubscriberById($id: ID) {
+  subscriber(where: {id: $id}, stage: DRAFT) {
+    name
+  }
+}
