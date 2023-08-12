@@ -1,4 +1,4 @@
-import { CaretRight, DiscordLogo, FileArrowDown, ImageSquare, Lightning, SpinnerGap } from "@phosphor-icons/react";
+import { CaretRight, CircleNotch, DiscordLogo, FileArrowDown, ImageSquare, Lightning } from "@phosphor-icons/react";
 import { DefaultUi, Player, Youtube } from "@vime/react";
 import '@vime/core/themes/default.css'
 import { Footer } from "./Footer";
@@ -14,7 +14,7 @@ export function Video({ lessonSlug }: { lessonSlug: string }) {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center">
-        <SpinnerGap size={48} className="animate-spin" />
+        <CircleNotch size={48} className="animate-spin" />
       </div>
     )
   }

@@ -1,6 +1,7 @@
-import { FormEvent, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CircleNotch } from "@phosphor-icons/react";
+import { useCookies } from "react-cookie";
 
 import { Logo } from "@/assets/Logo";
 import { Footer } from "@/components/Footer";
@@ -8,18 +9,11 @@ import { useCreateSubscriberMutation } from "@/graphql/generated";
 
 import CodeMockup from '@/assets/code-mockup.png'
 
-import Cookies from 'universal-cookie'
-
-const cookies = new Cookies()
-
 export function Subscribe() {
-  const hasUserId = cookies.get('userId')
-
+  const [cookies, setCookie] = useCookies(['userId'])
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-
   const [createSubscriber, { data, loading }] = useCreateSubscriberMutation()
-
   const navigate = useNavigate()
 
   const handleSubscribe = async (e: FormEvent) => {
@@ -30,16 +24,22 @@ export function Subscribe() {
         name,
         email
       }
+    }).then((res) => {
+      setCookie("userId", res.data.createSubscriber.id, { path: "/" })
     })
 
-    cookies.set("userId", data.createSubscriber.id)
-
-    navigate("/event")
+    navigate("/event", {
+      replace: true
+    })
   }
 
-  if (hasUserId) {
-    return <Navigate to={"/event"} />
-  }
+  useEffect(() => {
+    if (cookies.userId) {
+      navigate("/event", {
+        replace: true
+      })
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center gap-10">
